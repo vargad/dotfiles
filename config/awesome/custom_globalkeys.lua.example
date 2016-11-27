@@ -1,0 +1,5 @@
+local awful = require("awful")
+
+return awful.util.table.join(
+        awful.key({ modkey }, "t", function () awful.util.spawn_with_shell("thunar") end)
+    )

@@ -1,0 +1,9 @@
+local awful = require("awful")
+
+local tags = {}
+for s = 1, screen.count() do
+    -- Each screen has its own tag table.
+    tags[s] = awful.tag({ "General", "Web", "Dev", "Games" }, s, layouts[1])
+end
+
+return tags
