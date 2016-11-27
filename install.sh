@@ -12,6 +12,7 @@ function update_link()
 update_link Xdefaults
 update_link bashrc
 update_link xinitrc
+update_link gitconfig
 
 # awesome window manager
 update_link config/awesome/rc.lua
