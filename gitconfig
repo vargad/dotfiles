@@ -1,5 +1,3 @@
-[user]
-	name = Dániel Varga
 [include]
 	path = .gitconfig_local ; include .gitconfig_local relative to the current file
 [core]
