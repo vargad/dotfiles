@@ -15,10 +15,25 @@ function update_link()
     fi
 }
 
+function setup_vim()
+{
+    update_link vimrc
+    plug_module=~/.vim/autoload/plug.vim
+    if [[ ! -e "$plug_module" ]]; then
+    	# TODO: move this to separate function
+    	read -r -p "Are you sure you want to download https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim [y/N] " response
+        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+            curl -fLo "$plug_module" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	fi
+    fi
+}
+
 update_link Xdefaults
 update_link bashrc
 update_link xinitrc
 update_link gitconfig # TODO: should ask for name and e-mail
+
+setup_vim
 
 # awesome window manager
 update_link config/awesome/rc.lua
