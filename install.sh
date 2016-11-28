@@ -16,7 +16,7 @@ function update_link()
 update_link Xdefaults
 update_link bashrc
 update_link xinitrc
-update_link gitconfig
+update_link gitconfig # TODO: should ask for name and e-mail
 
 # awesome window manager
 update_link config/awesome/rc.lua
