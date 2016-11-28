@@ -5,6 +5,8 @@ set -e
 function update_link()
 {
     dest="$HOME/.$1"
+    dest_dir=$(dirname "${dest}")
+    mkdir -p "$dest_dir"
     if [[ ! -e $dest || -L $dest ]]; then
         echo "Updating $dest"
         ln -sf "`readlink -f $1`" $dest
