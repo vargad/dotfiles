@@ -44,7 +44,6 @@ set incsearch " search while typing
 set colorcolumn=80 " draw a line at column 80
 set number " line numbers
 set spell
-set autowrite
 set history=100 " command history
 set nowrap " do not wrap line lines by default
 set encoding=utf8
