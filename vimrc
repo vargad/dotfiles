@@ -18,7 +18,7 @@ Plug 'scrooloose/syntastic' " better with some external tools: cppcheck
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
-" useful some misc stuff
+" some useful misc stuff
 Plug 'jszakmeister/vim-togglecursor' " also change cursor shape in insert mode in console
 Plug 'ntpeters/vim-better-whitespace' " highlights trailing whitespace
 Plug 'bogado/file-line' " start vim with file line: $ vim myfile.cpp:125
