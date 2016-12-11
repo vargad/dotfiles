@@ -62,10 +62,6 @@ set smarttab
 " shift click to search current word
 set mousemodel=extend
 
-" Highlight whitespace
-set listchars=tab:>·,trail:␣,extends:>,precedes:<
-set list
-
 " some sane wild card ignores
 set wildignore=*.dll,*.o,*.out,*.pyc,*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif,*.class,*.pdf
 
@@ -76,8 +72,11 @@ au BufRead * normal zR
 colo seoul256
 set guifont=Liberation\ Mono\ 12
 
-" Highlight whitespace color setup (must be after loading the color theme!)
+" Highlight extra whitespace color setup (must be after loading the color theme!)
 highlight ExtraWhitespace guifg=DarkRed guibg=Red ctermbg=Red ctermfg=DarkRed cterm=underline gui=underline
+" Make whitespace clearly visible
+set listchars=tab:>·,trail:␣,extends:>,precedes:<
+set list
 
 " load additional local settings
 if !empty(glob("$HOME/.vimrc_local"))
