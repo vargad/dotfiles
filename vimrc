@@ -71,6 +71,7 @@ set wildignore=*.dll,*.o,*.out,*.pyc,*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif,*.clas
 set foldmethod=syntax
 set foldlevelstart=99
 
+" theme
 colo seoul256
 set guifont=Liberation\ Mono\ 12
 
