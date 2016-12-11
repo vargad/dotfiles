@@ -29,6 +29,7 @@ Plug 'scrooloose/nerdcommenter' " toggle comment
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'majutsushi/tagbar'
+Plug 'vim-scripts/Smart-Home-Key'
 
 " load additional locally used extra packages
 if !empty(glob("$HOME/.vimrc_local_plug"))
@@ -105,6 +106,9 @@ let g:airline#extensions#syntastic#enabled=0
 " function key mappings
 map <F5> :NERDTreeToggle<CR>
 map <F6> :TagbarToggle<CR>
+
+" other mappings
+map <HOME> :SmartHomeKey<CR>
 
 " load additional local settings
 if !empty(glob("$HOME/.vimrc_local"))
