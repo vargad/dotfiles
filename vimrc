@@ -10,7 +10,7 @@ Plug 'gioele/vim-autoswap' " do not open file again, switch to that vim window!
 Plug 'terryma/vim-multiple-cursors' " who doesn't want multiple cursors?
 
 " code completion/diagnostics
-Plug 'Valloric/YouCompleteMe', { 'for': 'cpp' }
+Plug 'Valloric/YouCompleteMe', { 'for': ['c', 'cpp', 'python', 'ruby', 'javascript'] }
 autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
 Plug 'scrooloose/syntastic' " better with some external tools: cppcheck
 
