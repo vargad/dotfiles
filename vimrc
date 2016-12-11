@@ -67,7 +67,7 @@ set wildignore=*.dll,*.o,*.out,*.pyc,*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif,*.clas
 
 " folding by syntax, open all folding by default
 set foldmethod=syntax
-au BufRead * normal zR
+set foldlevelstart=99
 
 colo seoul256
 set guifont=Liberation\ Mono\ 12
