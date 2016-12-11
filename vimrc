@@ -49,6 +49,9 @@ set history=100 " command history
 set nowrap " do not wrap line lines by default
 set encoding=utf8
 
+" Write the contents of the file, if it has been modified, on each :next, :rewind, :last, :first, :previous, :stop, :suspend, :tag, :!, :make, CTRL-] and CTRL-^ command; and when a :buffer, CTRL-O, CTRL-I, '{A-Z0-9}, or `{A-Z0-9} command takes one to another file
+set autowrite
+
 " proper indenting
 syntax on
 filetype on
