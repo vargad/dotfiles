@@ -3,7 +3,9 @@ set nocompatible
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible' " load some sensible vim setup
+
 Plug 'junegunn/seoul256.vim' " nice theme
+Plug 'vim-airline/vim-airline'
 
 " interesting stuff
 Plug 'gioele/vim-autoswap' " do not open file again, switch to that vim window!
@@ -80,6 +82,22 @@ highlight ExtraWhitespace guifg=DarkRed guibg=Red ctermbg=Red ctermfg=DarkRed ct
 " Make whitespace clearly visible
 set listchars=tab:>·,trail:␣,extends:>,precedes:<
 set list
+
+" airline setup
+set laststatus=2
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+let g:airline_left_sep='▶'
+let g:airline_right_sep ='◀'
+let g:airline_symbols.branch='⎇'
+
+let g:airline#extensions#hunks#enabled=0
+let g:airline_detect_spell=0
+let g:airline#extensions#whitespace#enabled=0
+let g:airline#extensions#syntastic#enabled=0
 
 " load additional local settings
 if !empty(glob("$HOME/.vimrc_local"))
