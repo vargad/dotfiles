@@ -26,6 +26,8 @@ Plug 'ntpeters/vim-better-whitespace' " highlights trailing whitespace
 Plug 'bogado/file-line' " start vim with file line: $ vim myfile.cpp:125
 Plug 'vim-scripts/Mark--Karkat' " multi color highlight words
 Plug 'scrooloose/nerdcommenter' " toggle comment
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " load additional locally used extra packages
 if !empty(glob("$HOME/.vimrc_local_plug"))
@@ -99,6 +101,8 @@ let g:airline_detect_spell=0
 let g:airline#extensions#whitespace#enabled=0
 let g:airline#extensions#syntastic#enabled=0
 
+" function key mappings
+map <F5> :NERDTreeToggle<CR>
 " load additional local settings
 if !empty(glob("$HOME/.vimrc_local"))
     so $HOME/.vimrc_local
