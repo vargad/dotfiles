@@ -110,6 +110,11 @@ map <F6> :TagbarToggle<CR>
 " other mappings
 map <HOME> :SmartHomeKey<CR>
 
+" Do not cancel multiple cursors when leaving visual mode
+let g:multi_cursor_exit_from_visual_mode=0
+" use Ctrl+C as multicursor next (default Ctrl+n used in browsers)
+let g:multi_cursor_next_key='<C-c>'
+
 " load additional local settings
 if !empty(glob("$HOME/.vimrc_local"))
     so $HOME/.vimrc_local
