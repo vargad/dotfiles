@@ -8,3 +8,6 @@
 	tool = gvimdiff
 [difftool]
 	prompt = false
+[alias]
+	co = checkout
+	st = status
