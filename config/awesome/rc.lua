@@ -13,6 +13,8 @@ local menubar = require("menubar")
 
 require('utils')
 
+awful.util.spawn_with_shell("dex -a -e Awesome")
+
 naughty.config.defaults.timeout = 60
 
 -- {{{ Error handling
