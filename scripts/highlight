@@ -1,0 +1,83 @@
+#!/bin/bash
+
+# highlight
+# author: Daniel Varga, 2018
+#
+# Simple script to highlight text
+
+declare -A color_map
+color_map[black]=30
+color_map[red]=31
+color_map[r]=31
+color_map[green]=32
+color_map[g]=32
+color_map[yellow]=33
+color_map[y]=33
+color_map[blue]=34
+color_map[b]=34
+color_map[magenta]=35
+color_map[m]=35
+color_map[cyan]=36
+color_map[c]=36
+color_map[white]=37
+color_map[w]=37
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]; do
+    key="$1"
+    case $key in
+        -h|--help)
+        HELP=true
+        shift;; # past argument
+        -i|--ignore-case)
+        IGNORE_CASE=true
+        shift;; # past argument
+        -b|--buffered)
+        BUFFERED=true
+        shift;; # past argument
+        *)    # unknown option
+        POSITIONAL+=("$1") # save it in an array for later
+        shift;; # past argument
+    esac
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+if [[ "$HELP" != true && $# -lt 2 ]]; then
+    >&2 echo "Error: not enough arguments"
+    HELP=true
+fi
+
+color_name=$1
+if [[ "$HELP" != true && ! -v color_map[$color_name] ]]; then
+    >&2 echo "Error: unknown color: $color_name"
+    HELP=true
+fi
+shift
+
+if [[ "$HELP" = true ]]; then
+    >&2 echo "Usage: $0 [arguments...] <color> [expressions...]"
+    >&2 echo "   -h, --help           print this help"
+    >&2 echo "   -i, --ignore-case    ignore case"
+    >&2 echo "   -b, --buffered       disable sed unbuffered mode to improve performance"
+    >&2 echo
+    >&2 echo "supported colors: black, (r)ed, (g)reen, (y)ellow, (b)lue, (m)agenta, (c)yan, (w)hite"
+    exit 1
+fi
+
+fg_color=$(echo -e "\e[1;${color_map[$color_name]}m")
+color_reset=$'\e[0m'
+
+if [[ "$IGNORE_CASE" == true ]]; then
+    ignore_case=I
+fi
+
+if [[ "$BUFFERED" == true ]]; then
+    buffered=-u
+fi
+
+sed_expressions=()
+for expression in "$@"; do
+    sed_expressions+=("-e" "s/$expression/$fg_color\0$color_reset/${ignore_case}g")
+done
+
+sed $buffered "${sed_expressions[@]}"
