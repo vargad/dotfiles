@@ -33,6 +33,9 @@ alias l="ls -l"
 alias mv="mv -n"
 alias cp="cp -i"
 
+alias gti=git
+alias givm=gvim
+
 alias prettyjson='python -m json.tool'
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
