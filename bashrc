@@ -17,11 +17,13 @@ fi
 
 # Put your fun stuff here.
 
-export PATH=${PATH}:/usr/local/bin:/sbin:$HOME/.node_modules/bin
 function unique_add_to_path() {
     [[ ":$PATH:" != *":$1:"* ]] && PATH="${PATH}:$1"
 }
 
+unique_add_to_path "/usr/local/bin"
+unique_add_to_path "/sbin"
+unique_add_to_path "$HOME/.node_modules/bin"
 
 alias l="ls -l"
 alias mv="mv -n"
