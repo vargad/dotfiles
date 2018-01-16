@@ -76,6 +76,7 @@ set foldmethod=syntax
 set foldlevelstart=99
 
 " theme
+let g:seoul256_srgb = 1
 colo seoul256
 set guifont=Liberation\ Mono\ 12
 
