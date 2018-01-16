@@ -40,7 +40,7 @@ alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.
 export MAKEFLAGS="-j4"
 
 PROMPT_COMMAND='history -a'
-HISTCONTROL=ignoreboth:erasedups
+HISTCONTROL=ignoreboth
 
 shopt -s autocd
 
