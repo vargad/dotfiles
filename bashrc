@@ -25,6 +25,10 @@ unique_add_to_path "/usr/local/bin"
 unique_add_to_path "/sbin"
 unique_add_to_path "$HOME/.node_modules/bin"
 
+# add script directory to path
+base_dir=$(dirname $(readlink ~/.bashrc))
+unique_add_to_path $base_dir/scripts
+
 alias l="ls -l"
 alias mv="mv -n"
 alias cp="cp -i"
