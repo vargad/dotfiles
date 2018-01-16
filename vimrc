@@ -22,7 +22,6 @@ Plug 'airblade/vim-gitgutter'
 " some useful misc stuff
 Plug 'jszakmeister/vim-togglecursor' " also change cursor shape in insert mode in console
 Plug 'ntpeters/vim-better-whitespace' " highlights trailing whitespace
-Plug 'bogado/file-line' " start vim with file line: $ vim myfile.cpp:125
 Plug 'vim-scripts/Mark--Karkat' " multi color highlight words
 Plug 'scrooloose/nerdcommenter' " toggle comment
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
