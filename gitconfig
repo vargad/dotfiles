@@ -11,3 +11,5 @@
 [alias]
 	co = checkout
 	st = status
+	stat = status
+	statu = status
