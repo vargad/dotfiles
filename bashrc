@@ -18,6 +18,10 @@ fi
 # Put your fun stuff here.
 
 export PATH=${PATH}:/usr/local/bin:/sbin:$HOME/.node_modules/bin
+function unique_add_to_path() {
+    [[ ":$PATH:" != *":$1:"* ]] && PATH="${PATH}:$1"
+}
+
 
 alias l="ls -l"
 alias mv="mv -n"
@@ -37,3 +41,5 @@ shopt -s autocd
 if [[ -f $HOME/.bashrc_local ]] ; then
     source $HOME/.bashrc_local
 fi
+
+unset unique_add_to_path
