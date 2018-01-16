@@ -20,11 +20,11 @@ function setup_vim()
     update_link vimrc
     plug_module=~/.vim/autoload/plug.vim
     if [[ ! -e "$plug_module" ]]; then
-    	# TODO: move this to separate function
-    	read -r -p "Are you sure you want to download https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim [y/N] " response
+        # TODO: move this to separate function
+        read -r -p "Are you sure you want to download https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim [y/N] " response
         if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
             curl -fLo "$plug_module" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	fi
+        fi
     fi
 }
 
