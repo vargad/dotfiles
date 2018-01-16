@@ -8,7 +8,6 @@ Plug 'junegunn/seoul256.vim' " nice theme
 Plug 'vim-airline/vim-airline'
 
 " interesting stuff
-Plug 'gioele/vim-autoswap' " do not open file again, switch to that vim window!
 Plug 'terryma/vim-multiple-cursors' " who doesn't want multiple cursors?
 
 " code completion/diagnostics
