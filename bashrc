@@ -42,9 +42,12 @@ alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.
 
 export MAKEFLAGS="-j4"
 
+# append to history every time a command is entered
 PROMPT_COMMAND='history -a'
+# don't put commands starting with space to history, also ignore duplicates
 HISTCONTROL=ignoreboth
 
+# enter directories without cd command
 shopt -s autocd
 
 if [[ -f $HOME/.bashrc_local ]] ; then
