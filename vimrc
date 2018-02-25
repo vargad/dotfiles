@@ -112,6 +112,11 @@ map <F6> :TagbarToggle<CR>
 " other mappings
 map <HOME> :SmartHomeKey<CR>
 
+nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
+nnoremap <leader>t :YcmCompleter GetType<CR>
+nnoremap <leader>f :YcmCompleter FixIt<CR>
+
 " Do not cancel multiple cursors when leaving visual mode
 let g:multi_cursor_exit_from_visual_mode=0
 " use Ctrl+C as multicursor next (default Ctrl+n used in browsers)
