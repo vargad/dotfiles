@@ -28,6 +28,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'majutsushi/tagbar'
 Plug 'vim-scripts/Smart-Home-Key'
+Plug 'derekwyatt/vim-fswitch'
 
 " load additional locally used extra packages
 if !empty(glob("$HOME/.vimrc_local_plug"))
@@ -104,6 +105,7 @@ let g:airline#extensions#syntastic#enabled=0
 
 " function key mappings
 map <F2> :YcmCompleter GoToImprecise<CR> " like in QtCreator
+map <F3> :FSHere<CR> " like in Qt Creator
 map <F5> :NERDTreeToggle<CR>
 map <F6> :TagbarToggle<CR>
 
@@ -114,6 +116,10 @@ map <HOME> :SmartHomeKey<CR>
 let g:multi_cursor_exit_from_visual_mode=0
 " use Ctrl+C as multicursor next (default Ctrl+n used in browsers)
 let g:multi_cursor_next_key='<C-c>'
+
+" set extensions for fswitch
+au! BufEnter *.cc let b:fswitchdst = 'h,hh'
+au! BufEnter *.h let b:fswitchdst = 'cc,c,cpp'
 
 " load additional local settings
 if !empty(glob("$HOME/.vimrc_local"))
