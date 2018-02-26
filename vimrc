@@ -105,7 +105,7 @@ let g:airline#extensions#syntastic#enabled=0
 
 " function key mappings
 map <F2> :YcmCompleter GoToImprecise<CR> " like in QtCreator
-map <F3> :FSHere<CR> " like in QtCreator
+map <F4> :FSHere<CR> " like in QtCreator
 map <F5> :NERDTreeToggle<CR>
 map <F6> :TagbarToggle<CR>
 
