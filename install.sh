@@ -32,6 +32,8 @@ update_link Xdefaults
 update_link bashrc
 update_link xinitrc
 update_link gitconfig # TODO: should ask for name and e-mail
+update_link config/qt5ct/colors/BreezeDark.conf
+update_link config/qt5ct/colors/OxygenDark.conf
 
 setup_vim
 
