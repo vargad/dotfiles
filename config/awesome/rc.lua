@@ -103,7 +103,7 @@ end
 -- }}}
 
 -- {{{ Menu
--- Create a laucher widget and a main menu
+-- Create a launcher widget and a main menu
 myawesomemenu = {
    { "hotkeys", function() return false, hotkeys_popup.show_help end},
    { "manual", terminal .. " -e man awesome" },
@@ -311,7 +311,7 @@ clientkeys = awful.util.table.join(
 )
 
 -- Bind all key numbers to tags.
--- Be careful: we use keycodes to make it works on any keyboard layout.
+-- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 9 do
     globalkeys = awful.util.table.join(globalkeys,
@@ -324,7 +324,7 @@ for i = 1, 9 do
                            awful.tag.viewonly(tag)
                         end
                   end),
-        -- Toggle tag.
+        -- Toggle tag display.
         awful.key({ modkey, "Control" }, "#" .. i + 9,
                   function ()
                       local screen = mouse.screen
@@ -343,7 +343,7 @@ for i = 1, 9 do
                           end
                      end
                   end),
-        -- Toggle tag.
+        -- Toggle tag on focused client.
         awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus then
@@ -389,7 +389,7 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "mpv" },
       properties = { floating = true } },
-    -- Set Firefox to always map on tags number 2 of screen 1.
+    -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
 }
