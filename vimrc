@@ -122,7 +122,19 @@ nnoremap <leader>f :YcmCompleter FixIt<CR>
 " Do not cancel multiple cursors when leaving visual mode
 let g:multi_cursor_exit_from_visual_mode=0
 " use Ctrl+C as multicursor next (default Ctrl+n used in browsers)
-let g:multi_cursor_next_key='<C-c>'
+"let g:multi_cursor_next_key='<C-c>'
+
+let g:multi_cursor_use_default_mapping=0
+
+" Default mapping
+let g:multi_cursor_start_word_key      = '<C-c>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_next_key            = '<C-c>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
 
 " set extensions for fswitch
 au! BufEnter *.cc let b:fswitchdst = 'h,hh'
