@@ -87,6 +87,8 @@ highlight ExtraWhitespace guifg=DarkRed guibg=Red ctermbg=Red ctermfg=DarkRed ct
 set listchars=tab:>·,trail:␣,extends:>,precedes:<
 set list
 
+let NERDTreeIgnore = ['\.pyc$', '\.o$', '\.d$']
+
 " airline setup
 set laststatus=2
 
