@@ -1,7 +1,6 @@
 -- Daniel Varga custom awesome configuration
 local gears = require("gears")
 local awful = require("awful")
-awful.rules = require("awful.rules")
 require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
