@@ -391,7 +391,12 @@ awful.rules.rules = {
                      focus = awful.client.focus.filter,
                      raise = true,
                      keys = clientkeys,
-                     buttons = clientbuttons } },
+                     buttons = clientbuttons,
+                     screen = awful.screen.preferred,
+                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
+     }
+    },
+
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
     { rule = { class = "pinentry" },
