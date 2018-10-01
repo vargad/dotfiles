@@ -142,6 +142,8 @@ let g:multi_cursor_quit_key            = '<Esc>'
 au! BufEnter *.cc let b:fswitchdst = 'h,hh'
 au! BufEnter *.h let b:fswitchdst = 'cc,c,cpp'
 
+set makeprg=$HOME/.vim/smartmake.rb\ %
+
 " load additional local settings
 if !empty(glob("$HOME/.vimrc_local"))
     so $HOME/.vimrc_local

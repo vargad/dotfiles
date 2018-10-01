@@ -26,6 +26,7 @@ function setup_vim()
             curl -fLo "$plug_module" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         fi
     fi
+    update_link vim/smartmake.rb
 }
 
 update_link Xdefaults
