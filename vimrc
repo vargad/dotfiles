@@ -29,6 +29,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'majutsushi/tagbar'
 Plug 'vim-scripts/Smart-Home-Key'
 Plug 'derekwyatt/vim-fswitch'
+Plug 'Shougo/deol.nvim'
 
 " load additional locally used extra packages
 if !empty(glob("$HOME/.vimrc_local_plug"))
