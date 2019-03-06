@@ -62,8 +62,7 @@ editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
-layouts =
-{
+awful.layout.layouts = {
     awful.layout.suit.max,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
@@ -74,6 +73,7 @@ layouts =
     awful.layout.suit.spiral,
     awful.layout.suit.spiral.dwindle,
     awful.layout.suit.magnifier,
+    awful.layout.suit.corner.nw,
     awful.layout.suit.floating
 }
 -- }}}
