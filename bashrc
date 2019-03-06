@@ -34,6 +34,8 @@ alias l="ls -l"
 alias mv="mv -n"
 alias cp="cp -i"
 
+alias icat='kitty +kitten icat'
+
 alias gti=git
 alias givm=gvim
 
