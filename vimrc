@@ -11,7 +11,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'terryma/vim-multiple-cursors' " who doesn't want multiple cursors?
 
 " code completion/diagnostics
-Plug 'Valloric/YouCompleteMe', { 'for': ['c', 'cpp', 'python', 'ruby', 'javascript', 'xml', 'xsd'] }
+Plug 'Valloric/YouCompleteMe' , { 'for': ['c', 'cpp', 'python', 'ruby', 'javascript', 'html', 'xml', 'xsd'] }
 autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
 Plug 'scrooloose/syntastic' " better with some external tools: cppcheck
 
