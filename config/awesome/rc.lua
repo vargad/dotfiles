@@ -408,6 +408,8 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "mpv" },
       properties = { floating = true } },
+    { rule = { class = "libreoffice" },
+      properties = { floating = false } },
     -- Add titlebars to normal clients and dialogs
     --{ rule_any = {type = { "normal", "dialog" }
     --  }, properties = { titlebars_enabled = true }
