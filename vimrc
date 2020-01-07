@@ -151,3 +151,5 @@ set makeprg=$HOME/.vim/smartmake.rb\ %
 if !empty(glob("$HOME/.vimrc_local"))
     so $HOME/.vimrc_local
 endif
+
+set tabstop=4 shiftwidth=4 expandtab
