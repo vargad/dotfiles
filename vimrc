@@ -30,6 +30,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'majutsushi/tagbar'
 Plug 'vim-scripts/Smart-Home-Key'
 Plug 'derekwyatt/vim-fswitch'
+Plug 'jlanzarotta/bufexplorer'
 
 " load additional locally used extra packages
 if !empty(glob("$HOME/.vimrc_local_plug"))
@@ -112,6 +113,7 @@ map <F2> :YcmCompleter GoToImprecise<CR> " like in QtCreator
 map <F4> :FSHere<CR> " like in QtCreator
 map <F5> :NERDTreeToggle<CR>
 map <F6> :TagbarToggle<CR>
+map <F11> :ToggleBufExplorer<CR>
 
 " other mappings
 map <HOME> :SmartHomeKey<CR>
