@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# 2017 Daniel Varga (vargad88@gmail.com)
+# 2017, 2018, 2019, 2020 Daniel Varga (vargad88@gmail.com)
 
 require 'fileutils'
 require 'shellwords'
