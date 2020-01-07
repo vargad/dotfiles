@@ -71,6 +71,7 @@ set smarttab
 
 " shift click to search current word
 set mousemodel=extend
+set mouse=a
 
 " some sane wild card ignores
 set wildignore=*.dll,*.o,*.out,*.pyc,*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif,*.class,*.pdf
