@@ -11,7 +11,7 @@ CPP_EXT=[".cc", ".cxx", ".cpp"]
 
 AVR_MCU="atmega328p"
 AVR_F_CPU=16000000
-AVR_COMPILE_COMMANDS_INCLUDE=["-I/usr/avr/include"]
+AVR_COMPILE_COMMANDS_INCLUDE=["-I/usr/avr/include", "-I/usr/lib/avr/include"]
 AVR_OBJCOPY="avr-objcopy"
 AVR_OBJDUMP="avr-objdump"
 AVRDUDE="avrdude"
