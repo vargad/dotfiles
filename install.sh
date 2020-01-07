@@ -27,6 +27,7 @@ function setup_vim()
         fi
     fi
     update_link vim/smartmake.rb
+    update_link vim/avr/compat.h
 }
 
 update_link Xdefaults
