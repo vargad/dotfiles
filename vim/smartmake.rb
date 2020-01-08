@@ -36,7 +36,11 @@ def arduino_build
     }
     File.write(CURRENT_DIRNAME+"/compile_commands.json", JSON.generate(compile_commands))
 
-    unless CPP_EXT.include?(File.extname(CURRENT_FILE))
+    type = nil
+    type = :cpp if CPP_EXT.include?(File.extname(CURRENT_FILE))
+    type = :asm if File.extname(CURRENT_FILE) == ".asm"
+
+    if type.nil?
         puts "not a C++ file: #{CURRENT_FILE}"
         return
     end
@@ -44,12 +48,22 @@ def arduino_build
     elffile=CURRENT_DIRNAME+"/build/"+File.basename(CURRENT_FILE, ".*")+".elf"
     hexfile=CURRENT_DIRNAME+"/build/"+File.basename(CURRENT_FILE, ".*")+".hex"
 
-    if !File.exist?(elffile) || File.mtime(elffile) < File.mtime(CURRENT_FILE)
-        return unless system(AVR_CXX, *AVR_FLAGS, *AVR_CXXFLAGS, CURRENT_FILE, "-o", elffile)
+    case type
+    when :cpp
+        if !File.exist?(elffile) || File.mtime(elffile) < File.mtime(CURRENT_FILE)
+            return unless system(AVR_CXX, *AVR_FLAGS, *AVR_CXXFLAGS, CURRENT_FILE, "-o", elffile)
+        end
+    when :asm
+        hexfile=CURRENT_DIRNAME+"/"+File.basename(CURRENT_FILE, ".*")+".hex"
+        if File.mtime(hexfile) < File.mtime(CURRENT_FILE)
+            return unless system("avra", File.expand_path(CURRENT_FILE))
+        end
     end
 
     if $*.include? "upload"
-        return unless system(AVR_OBJCOPY, "-O", "ihex", "-R", ".eeprom", elffile, hexfile)
+        if type == :cpp
+            return unless system(AVR_OBJCOPY, "-O", "ihex", "-R", ".eeprom", elffile, hexfile)
+        end
         avrdude_port=(Dir.glob("/dev/ttyUSB*")+Dir.glob("/dev/ttyACM*"))[0]
         return unless system(AVRDUDE, "-p", AVR_MCU, "-P", avrdude_port, "-b", "57600", "-c", "arduino", "-U", "flash:w:#{hexfile}")
     end
@@ -90,7 +104,7 @@ if PROJECT_ROOT.nil?
 
     if File.directory?(CURRENT_DIRNAME+"/build")
         file_content = File.read(CURRENT_FILE)
-        if file_content.include?("#include <avr/") || file_content.include?("#include <avrcpp")
+        if file_content.include?("#include <avr/") || file_content.include?("#include <avrcpp") || file_content.include?('.include "m328Pdef.inc"')
             #system("/home/dev/arduino/compile.sh", CURRENT_FILE)
             arduino_build
             exit 0
