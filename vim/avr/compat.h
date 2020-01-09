@@ -1,3 +1,5 @@
+// 2020 Daniel Varga (vargad88@gmail.com)
+
 #pragma once
 
 #ifndef __AVR_ARCH__
