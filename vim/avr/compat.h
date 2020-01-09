@@ -23,9 +23,17 @@ extern unsigned char PIND;
 extern unsigned char PORTB;
 extern unsigned char PORTD;
 extern unsigned char UDR0;
+extern unsigned char ADCL;
+extern unsigned char ADCH;
+extern unsigned char ADMUX;
+extern unsigned char ADCSRA;
 
 #define U2X0 1
 #define RXEN0 4
 #define TXEN0 3
+
+#define ADLAR 5
+#define REFS0 6
+#define REFS1 7
 
 #endif
