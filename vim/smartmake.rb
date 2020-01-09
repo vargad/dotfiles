@@ -55,7 +55,7 @@ def arduino_build
         end
     when :asm
         hexfile=CURRENT_DIRNAME+"/"+File.basename(CURRENT_FILE, ".*")+".hex"
-        if File.mtime(hexfile) < File.mtime(CURRENT_FILE)
+        if !File.exist?(hexfile) || File.mtime(hexfile) < File.mtime(CURRENT_FILE)
             return unless system("avra", File.expand_path(CURRENT_FILE))
         end
     end
