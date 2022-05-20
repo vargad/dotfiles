@@ -84,6 +84,9 @@ def find_project_root(dir)
     if File.file?(dir+"/Rakefile")
         return dir
     end
+    if File.file?(dir+"/Cargo.toml")
+        return dir
+    end
     parent = File.dirname(dir)
     root = find_project_root(parent)
     return dir if root.nil? && has_cmakelists && has_build_dir
@@ -131,6 +134,10 @@ if File.file? PROJECT_ROOT+"/CMakeLists.txt"
     end
 elsif File.file? PROJECT_ROOT+"/Rakefile"
     pid = spawn("rake --verbose")
+    Process.wait2 pid
+elsif File.file? PROJECT_ROOT+"/Cargo.toml"
+    args = ARGV[1..-1]
+    pid = spawn("cargo #{args.empty? ? 'build' : args.join(' ').shellescape}")
     Process.wait2 pid
 else
     puts "Unknown build system"
