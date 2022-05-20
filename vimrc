@@ -12,7 +12,9 @@ Plug 'vim-airline/vim-airline'
 "Plug 'Shougo/deol.nvim'
 
 " code completion/diagnostics
-Plug 'Valloric/YouCompleteMe' , { 'for': ['c', 'cpp', 'python', 'ruby', 'javascript', 'html', 'xml', 'xsd'] }
+Plug 'rust-lang/rust.vim'
+"Plug 'Valloric/YouCompleteMe' ", { 'for': ['c', 'cpp', 'python', 'ruby', 'rust'] }
+Plug 'Valloric/YouCompleteMe' , { 'for': ['c', 'cpp', 'python', 'rust', 'javascript', 'typescript'] }
 autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
 Plug 'scrooloose/syntastic' " better with some external tools: cppcheck
 
@@ -27,10 +29,15 @@ Plug 'vim-scripts/Mark--Karkat' " multi color highlight words
 Plug 'scrooloose/nerdcommenter' " toggle comment
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'majutsushi/tagbar'
+"Plug 'majutsushi/tagbar'
 Plug 'vim-scripts/Smart-Home-Key'
 Plug 'derekwyatt/vim-fswitch'
 Plug 'jlanzarotta/bufexplorer'
+Plug 'kamykn/spelunker.vim' " improve spellcheck supporting camelCase and other variations
+
+" typescript
+Plug 'leafgarland/typescript-vim'
+Plug 'Shougo/vimproc.vim'
 
 " load additional locally used extra packages
 if !empty(glob("$HOME/.vimrc_local_plug"))
@@ -55,6 +62,8 @@ set history=100 " command history
 set nowrap " do not wrap line lines by default
 set encoding=utf8
 set wrap
+
+set shiftwidth=4
 
 " Write the contents of the file, if it has been modified, on each :next, :rewind, :last, :first, :previous, :stop, :suspend, :tag, :!, :make, CTRL-] and CTRL-^ command; and when a :buffer, CTRL-O, CTRL-I, '{A-Z0-9}, or `{A-Z0-9} command takes one to another file
 set autowrite
@@ -124,12 +133,18 @@ nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
 nnoremap <leader>t :YcmCompleter GetType<CR>
 nnoremap <leader>f :YcmCompleter FixIt<CR>
 
+let g:ycm_always_populate_location_list=1
+
+let g:ycm_rust_toolchain_root='/home/vargad/dev/tools/rust-analyzer'
+
 " Do not cancel multiple cursors when leaving visual mode
 let g:multi_cursor_exit_from_visual_mode=0
 " use Ctrl+C as multicursor next (default Ctrl+n used in browsers)
 "let g:multi_cursor_next_key='<C-c>'
 
 let g:multi_cursor_use_default_mapping=0
+
+let g:syntastic_javascript_checkers = ['eslint']
 
 " Default mapping
 let g:multi_cursor_start_word_key      = '<C-c>'
@@ -141,11 +156,16 @@ let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
 
+
+" spelunker.vim will handle spell checking
+set nospell
+
 " set extensions for fswitch
 au! BufEnter *.cc let b:fswitchdst = 'h,hh'
 au! BufEnter *.h let b:fswitchdst = 'cc,c,cpp'
 
 set makeprg=$HOME/.vim/smartmake.rb\ %
+autocmd BufRead,BufNewFile *.rs set makeprg=$HOME/.vim/smartmake.rb\ %
 
 " load additional local settings
 if !empty(glob("$HOME/.vimrc_local"))
@@ -153,3 +173,5 @@ if !empty(glob("$HOME/.vimrc_local"))
 endif
 
 set tabstop=4 shiftwidth=4 expandtab
+
+autocmd BufRead,BufNewFile *.rb set tabstop=4 shiftwidth=4 expandtab
