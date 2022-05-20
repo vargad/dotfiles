@@ -25,6 +25,8 @@ unique_add_to_path "$HOME/dev/install/bin"
 unique_add_to_path "/usr/local/bin"
 unique_add_to_path "/sbin"
 unique_add_to_path "$HOME/.node_modules/bin"
+unique_add_to_path "$HOME/.local/bin"
+unique_add_to_path "$HOME/.cargo/bin"
 
 # add script directory to path
 base_dir=$(dirname $(readlink ~/.bashrc))
@@ -43,6 +45,10 @@ alias prettyjson='python -m json.tool'
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
 alias webserver='ruby -run -ehttpd .'
+
+alias orchid-prod='TERM=xterm ssh -L 15432:orchid-main.crxle6wk8pex.us-east-1.rds.amazonaws.com:5432 -L 15672:b-4be1dc7b-9278-4b9f-b863-281c573d0047.mq.us-east-1.amazonaws.com:443 orchid-prod'
+alias orchid-secure='TERM=xterm ssh -L 25432:secure-data-store.crxle6wk8pex.us-east-1.rds.amazonaws.com:5432 orchid-secure'
+alias orchid-monitoring='TERM=xterm ssh -L 4280:127.0.0.1:4280 -L 8086:127.0.0.1:8086 orchid-monitoring'
 
 export EDITOR=vim
 export MAKEFLAGS="-j4"
