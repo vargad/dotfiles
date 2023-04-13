@@ -213,7 +213,7 @@ let g:multi_cursor_quit_key            = '<Esc>'
 call ale#Set('python_ruff_options', '.')
 call ale#Set('python_mypy_options', '.')
 let g:ale_html_tidy_options = '-q -e -language en --custom-tags inline'
-let g:ale_virtualenv_dir_names = ["orchid_venv"]
+let g:ale_virtualenv_dir_names = ["orchid_venv", "venv", "venv38"]
 let g:ale_completion_enabled = 1
 let g:syntastic_disabled_filetypes=['html']
 
