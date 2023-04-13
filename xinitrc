@@ -8,4 +8,4 @@
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export CARGO_TARGET_DIR="/home/dev/cache/cargo"
 
-exec ck-launch-session dbus-launch --exit-with-session --sh-syntax /usr/bin/awesome
+exec dbus-launch --exit-with-session --sh-syntax /usr/bin/awesome
