@@ -21,6 +21,9 @@ function unique_add_to_path() {
     [[ ":$PATH:" != *":$1:"* ]] && PATH="${PATH}:$1"
 }
 
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+unique_add_to_path "$GEM_HOME/bin"
+
 unique_add_to_path "$HOME/dev/install/bin"
 unique_add_to_path "/usr/local/bin"
 unique_add_to_path "/sbin"
