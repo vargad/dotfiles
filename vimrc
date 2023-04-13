@@ -11,12 +11,19 @@ Plug 'vim-airline/vim-airline'
 "Plug 'terryma/vim-multiple-cursors' " who doesn't want multiple cursors?
 "Plug 'Shougo/deol.nvim'
 
+Plug 'MaxMEllon/vim-jsx-pretty'
+
+" typescript
+Plug 'leafgarland/typescript-vim'
+
 " code completion/diagnostics
 Plug 'rust-lang/rust.vim'
 "Plug 'Valloric/YouCompleteMe' ", { 'for': ['c', 'cpp', 'python', 'ruby', 'rust'] }
-Plug 'Valloric/YouCompleteMe' , { 'for': ['c', 'cpp', 'python', 'rust', 'javascript', 'typescript'] }
-autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
+Plug 'Valloric/YouCompleteMe' , { 'for': ['c', 'cpp', 'sql', 'rust', 'javascript', 'typescript', 'typescriptreact'] }
+"autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
 Plug 'scrooloose/syntastic' " better with some external tools: cppcheck
+Plug 'rust-lang/rust.vim'
+Plug 'dense-analysis/ale'
 
 " git utils
 Plug 'tpope/vim-fugitive'
@@ -35,9 +42,11 @@ Plug 'derekwyatt/vim-fswitch'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'kamykn/spelunker.vim' " improve spellcheck supporting camelCase and other variations
 
-" typescript
-Plug 'leafgarland/typescript-vim'
 Plug 'Shougo/vimproc.vim'
+
+if exists("g:neovide")
+    Plug 'github/copilot.vim' , { 'for': ['c', 'cpp', 'sql', 'python', 'ruby', 'rust', 'javascript', 'typescript', 'typescriptreact', 'gitcommit'] }
+endif
 
 " load additional locally used extra packages
 if !empty(glob("$HOME/.vimrc_local_plug"))
@@ -92,7 +101,24 @@ set foldlevelstart=99
 " theme
 let g:seoul256_srgb = 1
 colo seoul256
-set guifont=Liberation\ Mono\ 12
+" colo seoul256-light
+set guifont=Liberation\ Mono\ 11
+if exists("g:neovide")
+    set title
+    set guifont=Fira\ Code,Noto\ Color\ Emoji:h11
+
+    let g:neovide_scale_factor=1.0
+    let g:neovide_cursor_vfx_mode = "pixiedust"
+    let g:neovide_cursor_vfx_particle_density = 7.0
+
+    function! ChangeScaleFactor(delta)
+      let g:neovide_scale_factor = g:neovide_scale_factor * a:delta
+    endfunction
+
+    nnoremap <expr><C-=> ChangeScaleFactor(1.25)
+    nnoremap <expr><C--> ChangeScaleFactor(1/1.25)
+endif
+
 
 " Highlight extra whitespace color setup (must be after loading the color theme!)
 highlight ExtraWhitespace guifg=DarkRed guibg=Red ctermbg=Red ctermfg=DarkRed cterm=underline gui=underline
@@ -132,6 +158,8 @@ nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
 nnoremap <leader>t :YcmCompleter GetType<CR>
 nnoremap <leader>f :YcmCompleter FixIt<CR>
+let g:ycm_global_ycm_extra_conf = '~/.ycm_global_extra_conf.py'
+let g:ycm_rust_toolchain_root = '/usr/lib/rust/1.57.0'
 
 let g:ycm_always_populate_location_list=1
 
@@ -157,6 +185,17 @@ let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
 
 
+call ale#Set('python_ruff_options', '.')
+call ale#Set('python_mypy_options', '.')
+let g:ale_html_tidy_options = '-q -e -language en --custom-tags inline'
+let g:ale_virtualenv_dir_names = ["orchid_venv"]
+let g:ale_completion_enabled = 1
+let g:syntastic_disabled_filetypes=['html']
+
+
+let g:copilot_node_command = "~/dev/tools/node-v16.19.0-linux-x64/bin/node"
+let g:copilot_filetypes = {'gitcommit': v:true}
+
 " spelunker.vim will handle spell checking
 set nospell
 
@@ -175,3 +214,6 @@ endif
 set tabstop=4 shiftwidth=4 expandtab
 
 autocmd BufRead,BufNewFile *.rb set tabstop=4 shiftwidth=4 expandtab
+autocmd Filetype javascript setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype typescript setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd Filetype typescriptreact setlocal tabstop=2 shiftwidth=2 expandtab
