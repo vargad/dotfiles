@@ -31,7 +31,7 @@ unique_add_to_path "$HOME/.node_modules/bin"
 unique_add_to_path "$HOME/.local/bin"
 unique_add_to_path "$HOME/.cargo/bin"
 
-ANDROID_HOME=/home/dev/tools/android
+export ANDROID_HOME=/home/dev/tools/android
 
 # add script directory to path
 base_dir=$(dirname $(readlink ~/.bashrc))
