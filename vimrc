@@ -150,6 +150,9 @@ else
     set guifont=Liberation\ Mono\ 11
 endif
 
+if has('nvim')
+    set clipboard^=unnamed,unnamedplus
+endif
 
 
 " Highlight extra whitespace color setup (must be after loading the color theme!)

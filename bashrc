@@ -30,6 +30,13 @@ unique_add_to_path "/sbin"
 unique_add_to_path "$HOME/.node_modules/bin"
 unique_add_to_path "$HOME/.local/bin"
 unique_add_to_path "$HOME/.cargo/bin"
+unique_add_to_path "$HOME/.gem/ruby/2.5.0/bin"
+unique_add_to_path "/var/lib/flatpak/exports/share"
+unique_add_to_path "$HOME/.local/share/flatpak/exports/share"
+unique_add_to_path "$HOME/dev/tools/flutter/bin"
+unique_add_to_path "$HOME/.pulumi/bin"
+
+source "$HOME/.bash_completion.d/python-argcomplete.sh"
 
 export ANDROID_HOME=/home/dev/tools/android
 
