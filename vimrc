@@ -1,51 +1,62 @@
 set nocompatible
 
+
+" make sure vim-plug is installed
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible' " load some sensible vim setup
 
-Plug 'junegunn/seoul256.vim' " nice theme
+" themes
+Plug 'junegunn/seoul256.vim', has('vim') ? {} : { 'on': [] }
+Plug 'navarasu/onedark.nvim', has('nvim') ? {} : { 'on': [] }
 Plug 'vim-airline/vim-airline'
+Plug 'ryanoasis/vim-devicons'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-" interesting stuff
-"Plug 'terryma/vim-multiple-cursors' " who doesn't want multiple cursors?
-"Plug 'Shougo/deol.nvim'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
+" language specific
 Plug 'MaxMEllon/vim-jsx-pretty'
-
-" typescript
 Plug 'leafgarland/typescript-vim'
+Plug 'rust-lang/rust.vim'
 
 " code completion/diagnostics
-Plug 'rust-lang/rust.vim'
-"Plug 'Valloric/YouCompleteMe' ", { 'for': ['c', 'cpp', 'python', 'ruby', 'rust'] }
-Plug 'Valloric/YouCompleteMe' , { 'for': ['c', 'cpp', 'sql', 'rust', 'javascript', 'typescript', 'typescriptreact'] }
+Plug 'Valloric/YouCompleteMe' , { 'do': './install.py --clang-completer --rust-completer --ts-completer', 'for': ['c', 'cpp', 'sql', 'rust', 'javascript', 'typescript', 'typescriptreact'] }
 "autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
-Plug 'scrooloose/syntastic' " better with some external tools: cppcheck
-Plug 'rust-lang/rust.vim'
+" Plug 'scrooloose/syntastic' " better with some external tools: cppcheck
 Plug 'dense-analysis/ale'
 
 " git utils
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
+
+" other utils
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight',  { 'on':  'NERDTreeToggle' }
+Plug 'liuchengxu/vista.vim'
+Plug 'derekwyatt/vim-fswitch'
+Plug 'jlanzarotta/bufexplorer'
+Plug 'kamykn/spelunker.vim' " improve spellcheck supporting camelCase and other variations
 
 " some useful misc stuff
 Plug 'jszakmeister/vim-togglecursor' " also change cursor shape in insert mode in console
 Plug 'ntpeters/vim-better-whitespace' " highlights trailing whitespace
 Plug 'vim-scripts/Mark--Karkat' " multi color highlight words
 Plug 'scrooloose/nerdcommenter' " toggle comment
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'Xuyuanp/nerdtree-git-plugin'
-"Plug 'majutsushi/tagbar'
-Plug 'vim-scripts/Smart-Home-Key'
-Plug 'derekwyatt/vim-fswitch'
-Plug 'jlanzarotta/bufexplorer'
-Plug 'kamykn/spelunker.vim' " improve spellcheck supporting camelCase and other variations
+Plug 'vim-scripts/Smart-Home-Key' " smart jump to home, toggle between start of line and first text in line
 
-Plug 'Shougo/vimproc.vim'
+Plug 'CoderCookE/vim-chatgpt'
 
 if exists("g:neovide")
-    Plug 'github/copilot.vim' , { 'for': ['c', 'cpp', 'sql', 'python', 'ruby', 'rust', 'javascript', 'typescript', 'typescriptreact', 'gitcommit'] }
+    Plug 'github/copilot.vim' , { 'for': ['c', 'cpp', 'vim', 'sql', 'python', 'ruby', 'rust', 'javascript', 'typescript', 'typescriptreact', 'json', 'gitcommit', 'html', 'markdown'] }
 endif
 
 " load additional locally used extra packages
@@ -85,7 +96,6 @@ filetype plugin on
 set autoindent
 set cindent
 set copyindent
-set smarttab
 
 " shift click to search current word
 set mousemodel=extend
@@ -98,14 +108,28 @@ set wildignore=*.dll,*.o,*.out,*.pyc,*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif,*.clas
 set foldmethod=syntax
 set foldlevelstart=99
 
+
 " theme
-let g:seoul256_srgb = 1
-colo seoul256
-" colo seoul256-light
-set guifont=Liberation\ Mono\ 11
+if !has('nvim')
+    let g:seoul256_srgb = 1
+    " colo seoul256
+    colo seoul256-light
+else
+    let g:onedark_config = {
+      \ 'style': 'light',
+      \ 'toggle_style_key': '<leader>ts',
+      \ 'toggle_style_list': ['light', 'warm'],
+      \ 'diagnostics': {
+        \ 'darker': v:true,
+        \ 'background': v:true
+      \ }
+    \ }
+    colo onedark
+endif
+
 if exists("g:neovide")
     set title
-    set guifont=Fira\ Code,Noto\ Color\ Emoji:h11
+    set guifont=Fira\ Code,Noto\ Color\ Emoji:h7
 
     let g:neovide_scale_factor=1.0
     let g:neovide_cursor_vfx_mode = "pixiedust"
@@ -117,7 +141,15 @@ if exists("g:neovide")
 
     nnoremap <expr><C-=> ChangeScaleFactor(1.25)
     nnoremap <expr><C--> ChangeScaleFactor(1/1.25)
+
+
+    let g:copilot_filetypes = {'gitcommit': v:true, 'markdown': v:true}
+
+    inoremap <C-s> <Cmd>call copilot#Suggest()<CR>
+else
+    set guifont=Liberation\ Mono\ 11
 endif
+
 
 
 " Highlight extra whitespace color setup (must be after loading the color theme!)
@@ -126,7 +158,7 @@ highlight ExtraWhitespace guifg=DarkRed guibg=Red ctermbg=Red ctermfg=DarkRed ct
 set listchars=tab:>·,trail:␣,extends:>,precedes:<
 set list
 
-let NERDTreeIgnore = ['\.pyc$', '\.o$', '\.d$']
+let NERDTreeIgnore = ['\.pyc$', '\.o$', '\.d$', '^venv']
 
 " airline setup
 set laststatus=2
@@ -148,7 +180,7 @@ let g:airline#extensions#syntastic#enabled=0
 map <F2> :YcmCompleter GoToImprecise<CR> " like in QtCreator
 map <F4> :FSHere<CR> " like in QtCreator
 map <F5> :NERDTreeToggle<CR>
-map <F6> :TagbarToggle<CR>
+map <F6> :Vista!!<CR>
 map <F11> :ToggleBufExplorer<CR>
 
 " other mappings
@@ -164,13 +196,6 @@ let g:ycm_rust_toolchain_root = '/usr/lib/rust/1.57.0'
 let g:ycm_always_populate_location_list=1
 
 let g:ycm_rust_toolchain_root='/home/vargad/dev/tools/rust-analyzer'
-
-" Do not cancel multiple cursors when leaving visual mode
-let g:multi_cursor_exit_from_visual_mode=0
-" use Ctrl+C as multicursor next (default Ctrl+n used in browsers)
-"let g:multi_cursor_next_key='<C-c>'
-
-let g:multi_cursor_use_default_mapping=0
 
 let g:syntastic_javascript_checkers = ['eslint']
 
@@ -192,9 +217,6 @@ let g:ale_virtualenv_dir_names = ["orchid_venv"]
 let g:ale_completion_enabled = 1
 let g:syntastic_disabled_filetypes=['html']
 
-
-let g:copilot_node_command = "~/dev/tools/node-v16.19.0-linux-x64/bin/node"
-let g:copilot_filetypes = {'gitcommit': v:true}
 
 " spelunker.vim will handle spell checking
 set nospell
