@@ -53,7 +53,7 @@ Plug 'vim-scripts/Mark--Karkat' " multi color highlight words
 Plug 'scrooloose/nerdcommenter' " toggle comment
 Plug 'vim-scripts/Smart-Home-Key' " smart jump to home, toggle between start of line and first text in line
 
-Plug 'CoderCookE/vim-chatgpt'
+" Plug 'CoderCookE/vim-chatgpt'
 
 if exists("g:neovide")
     Plug 'github/copilot.vim' , { 'for': ['c', 'cpp', 'vim', 'sql', 'python', 'ruby', 'rust', 'javascript', 'typescript', 'typescriptreact', 'json', 'gitcommit', 'html', 'markdown'] }
@@ -129,7 +129,7 @@ endif
 
 if exists("g:neovide")
     set title
-    set guifont=Fira\ Code,Noto\ Color\ Emoji:h7
+    set guifont=Fira\ Code,Noto\ Color\ Emoji:h11
 
     let g:neovide_scale_factor=1.0
     let g:neovide_cursor_vfx_mode = "pixiedust"
@@ -194,11 +194,8 @@ nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
 nnoremap <leader>t :YcmCompleter GetType<CR>
 nnoremap <leader>f :YcmCompleter FixIt<CR>
 let g:ycm_global_ycm_extra_conf = '~/.ycm_global_extra_conf.py'
-let g:ycm_rust_toolchain_root = '/usr/lib/rust/1.57.0'
 
 let g:ycm_always_populate_location_list=1
-
-let g:ycm_rust_toolchain_root='/home/vargad/dev/tools/rust-analyzer'
 
 let g:syntastic_javascript_checkers = ['eslint']
 
