@@ -55,8 +55,25 @@ Plug 'vim-scripts/Smart-Home-Key' " smart jump to home, toggle between start of 
 
 " Plug 'CoderCookE/vim-chatgpt'
 
-if exists("g:neovide")
-    Plug 'github/copilot.vim' , { 'for': ['c', 'cpp', 'vim', 'sql', 'python', 'ruby', 'rust', 'javascript', 'typescript', 'typescriptreact', 'json', 'gitcommit', 'html', 'markdown'] }
+if has('nvim')
+    Plug 'github/copilot.vim' , { 'for': [
+        \ 'c',
+        \ 'conf',
+        \ 'cpp',
+        \ 'gitcommit',
+        \ 'html',
+        \ 'javascript',
+        \ 'json',
+        \ 'markdown',
+        \ 'python',
+        \ 'ruby',
+        \ 'rust',
+        \ 'sh',
+        \ 'sql',
+        \ 'typescript',
+        \ 'typescriptreact',
+        \ 'vim'
+    \ ] }
 endif
 
 " load additional locally used extra packages
@@ -133,7 +150,7 @@ if exists("g:neovide")
 
     let g:neovide_scale_factor=1.0
     let g:neovide_cursor_vfx_mode = "pixiedust"
-    let g:neovide_cursor_vfx_particle_density = 7.0
+    let g:neovide_cursor_vfx_particle_density = 8.0
 
     function! ChangeScaleFactor(delta)
       let g:neovide_scale_factor = g:neovide_scale_factor * a:delta
