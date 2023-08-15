@@ -50,6 +50,29 @@ alias prettyjson='python -m json.tool'
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
 alias webserver='ruby -run -ehttpd .'
+alias gnvim='neovide'
+
+
+function git-copy-with-history()
+{
+    (
+        set -e
+
+        git checkout -b dup
+
+        git mv $1 $2
+        git commit -m "duplicate file"
+
+        git checkout HEAD~ $1
+        git commit -m "restore file"
+
+        git checkout -
+
+        git merge --no-ff dup
+
+        git branch -d dup
+    )
+}
 
 
 export EDITOR=vim

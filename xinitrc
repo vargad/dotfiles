@@ -8,4 +8,8 @@
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export CARGO_TARGET_DIR="/home/vargad/dev/cache/cargo"
 
+if [[ -f $HOME/.xinitrc_local ]] ; then
+    source $HOME/.xinitrc_local
+fi
+
 exec dbus-launch --exit-with-session --sh-syntax /usr/bin/awesome
