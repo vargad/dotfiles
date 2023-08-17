@@ -25,6 +25,7 @@ export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 unique_add_to_path "$GEM_HOME/bin"
 
 unique_add_to_path "$HOME/dev/install/bin"
+unique_add_to_path "$HOME/dev/tools/rust-analyzer/bin"
 unique_add_to_path "/usr/local/bin"
 unique_add_to_path "/sbin"
 unique_add_to_path "$HOME/.node_modules/bin"
@@ -36,7 +37,7 @@ unique_add_to_path "$HOME/.local/share/flatpak/exports/share"
 unique_add_to_path "$HOME/dev/tools/flutter/bin"
 unique_add_to_path "$HOME/.pulumi/bin"
 
-source "$HOME/.bash_completion.d/python-argcomplete.sh"
+# source "$HOME/.bash_completion.d/python-argcomplete.sh"
 
 export ANDROID_HOME=/home/dev/tools/android
 

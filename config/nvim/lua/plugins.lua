@@ -25,10 +25,24 @@ return require('packer').startup(function(use)
 
 
     use {
+        "neovim/nvim-lspconfig",
+        config = function()
+            local lspconfig = require('lspconfig')
+            lspconfig.pylsp.setup {}
+            lspconfig.sqlls.setup {}
+            lspconfig.clangd.setup {}
+            lspconfig.rust_analyzer.setup {}
+        end
+    }
+
+
+    use {
         "SmiteshP/nvim-navic",
         requires = "neovim/nvim-lspconfig",
         config = function()
-            require("nvim-navic").setup { lsp = { auto_attach = true, preference = {'clangd'} } }
+            require("nvim-navic").setup {
+                lsp = { auto_attach = true, preference = {'clangd'} }
+            }
         end
     }
 
@@ -56,5 +70,13 @@ return require('packer').startup(function(use)
       end
     }
 
+    use {
+      "startup-nvim/startup.nvim",
+      requires = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"},
+      config = function()
+        require"startup".setup()
+        vim.cmd "DisableWhitespace"
+      end
+    }
 
 end)
