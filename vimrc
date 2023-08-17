@@ -14,7 +14,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible' " load some sensible vim setup
 
 " themes
-Plug 'junegunn/seoul256.vim', has('vim') ? {} : { 'on': [] }
+Plug 'junegunn/seoul256.vim', !has('nvim') ? {} : { 'on': [] }
 Plug 'navarasu/onedark.nvim', has('nvim') ? {} : { 'on': [] }
 Plug 'vim-airline/vim-airline'
 Plug 'ryanoasis/vim-devicons'
@@ -129,8 +129,7 @@ set foldlevelstart=99
 " theme
 if !has('nvim')
     let g:seoul256_srgb = 1
-    " colo seoul256
-    colo seoul256-light
+    colo seoul256
 else
     let g:onedark_config = {
       \ 'style': 'light',
