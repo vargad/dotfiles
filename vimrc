@@ -202,6 +202,7 @@ nnoremap <leader>f :YcmCompleter FixIt<CR>
 let g:ycm_global_ycm_extra_conf = '~/.ycm_global_extra_conf.py'
 
 let g:ycm_always_populate_location_list=1
+let g:ycm_rust_toolchain_root = expand('~/dev/tools/rust-analyzer')
 
 let g:syntastic_javascript_checkers = ['eslint']
 
