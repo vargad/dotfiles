@@ -31,6 +31,7 @@ return require('packer').startup(function(use)
             lspconfig.pylsp.setup {}
             lspconfig.sqlls.setup {}
             lspconfig.clangd.setup {}
+            lspconfig.ruby_ls.setup {}
             lspconfig.rust_analyzer.setup {}
         end
     }
@@ -75,7 +76,13 @@ return require('packer').startup(function(use)
       requires = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"},
       config = function()
         require"startup".setup()
-        vim.cmd "DisableWhitespace"
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern={"startup"},
+            callback=function()
+                    vim.cmd "DisableWhitespace"
+                    vim.o.colorcolumn = 0
+                end
+            })
       end
     }
 

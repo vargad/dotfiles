@@ -23,6 +23,7 @@ function unique_add_to_path() {
 
 export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 unique_add_to_path "$GEM_HOME/bin"
+unique_add_to_path "$GEM_HOME/gems/ruby-lsp-0.8.1/exe"
 
 unique_add_to_path "$HOME/dev/install/bin"
 unique_add_to_path "$HOME/dev/tools/rust-analyzer/bin"

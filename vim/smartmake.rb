@@ -96,7 +96,7 @@ end
 CURRENT_FILE=$*[0]
 CURRENT_DIRNAME=File.expand_path(File.dirname($*[0]))
 CORES=`cat /proc/cpuinfo | grep processor | wc -l`.to_i
-PROJECT_ROOT = find_project_root(Dir.pwd)
+PROJECT_ROOT = find_project_root(CURRENT_DIRNAME)
 
 if PROJECT_ROOT.nil?
     if File.exists? 'Makefile'
@@ -137,7 +137,7 @@ elsif File.file? PROJECT_ROOT+"/Rakefile"
     Process.wait2 pid
 elsif File.file? PROJECT_ROOT+"/Cargo.toml"
     args = ARGV[1..-1]
-    pid = spawn("cargo #{args.empty? ? 'build' : args.join(' ').shellescape}")
+    pid = spawn("cargo #{args.empty? ? 'build' : args.join(' ').shellescape} --manifest-path=#{(PROJECT_ROOT+"/Cargo.toml").shellescape}")
     Process.wait2 pid
 else
     puts "Unknown build system"

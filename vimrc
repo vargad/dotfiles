@@ -28,7 +28,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'rust-lang/rust.vim'
 
 " code completion/diagnostics
-Plug 'Valloric/YouCompleteMe' , { 'do': './install.py --clang-completer --rust-completer --ts-completer', 'for': ['c', 'cpp', 'sql', 'rust', 'javascript', 'typescript', 'typescriptreact'] }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --rust-completer --ts-completer', 'for': ['c', 'cpp', 'sql', 'rust', 'javascript', 'typescript', 'typescriptreact'] }
 Plug 'dense-analysis/ale'
 Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/syntastic' " better with some external tools: cppcheck
