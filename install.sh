@@ -30,6 +30,7 @@ function setup_vim()
     update_link vim/avr/compat.h
     update_link config/nvim/init.vim
     update_link config/nvim/lua/plugins.lua
+    update_link config/nvim/lua/treesitter.lua
 }
 
 update_link Xdefaults

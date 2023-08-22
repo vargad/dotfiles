@@ -137,7 +137,9 @@ elsif File.file? PROJECT_ROOT+"/Rakefile"
     Process.wait2 pid
 elsif File.file? PROJECT_ROOT+"/Cargo.toml"
     args = ARGV[1..-1]
-    pid = spawn("cargo #{args.empty? ? 'build' : args.join(' ').shellescape} --manifest-path=#{(PROJECT_ROOT+"/Cargo.toml").shellescape}")
+    #abspath=JSON.parse(`cargo metadata --format-version=1 --manifest-path=#{PROJECT_ROOT.shellescape}/Cargo.toml`)["workspace_root"]
+    #puts "cargo workspace path: #{abspath}"
+    pid = spawn("cargo #{args.empty? ? 'build' : args.join(' ').shellescape} --manifest-path=#{PROJECT_ROOT.shellescape}/Cargo.toml")
     Process.wait2 pid
 else
     puts "Unknown build system"

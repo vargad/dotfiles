@@ -14,9 +14,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible' " load some sensible vim setup
 
 " themes
-Plug 'junegunn/seoul256.vim', !has('nvim') ? {} : { 'on': [] }
+Plug 'joshdick/onedark.vim', !has('nvim') ? {} : { 'on': [] }
 Plug 'navarasu/onedark.nvim', has('nvim') ? {} : { 'on': [] }
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
@@ -106,7 +107,6 @@ set shiftwidth=4
 set autowrite
 
 " proper indenting
-syntax on
 filetype on
 filetype indent on
 filetype plugin on
@@ -126,11 +126,16 @@ set foldmethod=syntax
 set foldlevelstart=99
 
 
-" theme
-if !has('nvim')
-    let g:seoul256_srgb = 1
-    colo seoul256
+" syntax highlighting is using treesitter on neovim
+if has('nvim')
+    syntax off
 else
+    syntax on
+endif
+
+
+" theme
+if has('nvim')
     let g:onedark_config = {
       \ 'style': 'light',
       \ 'toggle_style_key': '<leader>ts',
@@ -140,8 +145,9 @@ else
         \ 'background': v:true
       \ }
     \ }
-    colo onedark
 endif
+colo onedark
+
 
 if exists("g:neovide")
     set title
@@ -183,6 +189,7 @@ let NERDTreeIgnore = ['\.pyc$', '\.o$', '\.d$', '^venv']
 set laststatus=2
 
 let g:airline_powerline_fonts = 1
+let g:airline_theme='onedark'
 
 
 " function key mappings
@@ -206,15 +213,6 @@ let g:ycm_rust_toolchain_root = expand('~/dev/tools/rust-analyzer')
 
 let g:syntastic_javascript_checkers = ['eslint']
 
-" Default mapping
-let g:multi_cursor_start_word_key      = '<C-c>'
-let g:multi_cursor_select_all_word_key = '<A-n>'
-let g:multi_cursor_start_key           = 'g<C-n>'
-let g:multi_cursor_select_all_key      = 'g<A-n>'
-let g:multi_cursor_next_key            = '<C-c>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
 
 
 call ale#Set('python_ruff_options', '.')
