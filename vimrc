@@ -125,13 +125,7 @@ set wildignore=*.dll,*.o,*.out,*.pyc,*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif,*.clas
 set foldmethod=syntax
 set foldlevelstart=99
 
-
-" syntax highlighting is using treesitter on neovim
-if has('nvim')
-    syntax off
-else
-    syntax on
-endif
+syntax on
 
 
 " theme
@@ -204,12 +198,14 @@ map <HOME> :SmartHomeKey<CR>
 
 nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
-nnoremap <leader>t :YcmCompleter GetType<CR>
+nnoremap <leader>gt :YcmCompleter GetType<CR>
 nnoremap <leader>f :YcmCompleter FixIt<CR>
 let g:ycm_global_ycm_extra_conf = '~/.ycm_global_extra_conf.py'
 
 let g:ycm_always_populate_location_list=1
 let g:ycm_rust_toolchain_root = expand('~/dev/tools/rust-analyzer')
+
+set completeopt-=preview " do not show complete preview window
 
 let g:syntastic_javascript_checkers = ['eslint']
 
