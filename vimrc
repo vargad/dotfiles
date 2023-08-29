@@ -74,6 +74,7 @@ if has('nvim')
         \ 'rust',
         \ 'sh',
         \ 'sql',
+        \ 'toml',
         \ 'typescript',
         \ 'typescriptreact',
         \ 'vim'
