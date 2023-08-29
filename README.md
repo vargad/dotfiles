@@ -17,3 +17,8 @@ install.sh script, which creates symlinks (or updates exsiting symlinks):
 Please note that the script does not delete any files. It skips all existing
 files (and prints a warning), unless it's a symlink, in that case it updates
 the link.
+
+
+## Install vim plugins
+
+    $ neovide -- -c 'silent' -c 'PlugInstall' -c 'PlugUpgrade' -c 'PackerInstall' -c 'PackerUpdate' -c 'qa!'

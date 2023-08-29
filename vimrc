@@ -67,6 +67,7 @@ if has('nvim')
         \ 'html',
         \ 'javascript',
         \ 'json',
+        \ 'lua',
         \ 'markdown',
         \ 'python',
         \ 'ruby',
@@ -202,6 +203,7 @@ nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
 nnoremap <leader>gt :YcmCompleter GetType<CR>
 nnoremap <leader>f :YcmCompleter FixIt<CR>
+xnoremap <leader>c <Plug>NERDCommenterToggle
 let g:ycm_global_ycm_extra_conf = '~/.ycm_global_extra_conf.py'
 
 let g:ycm_always_populate_location_list=1

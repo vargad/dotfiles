@@ -16,7 +16,6 @@ local hydra_header = {
 local quotes = {
     {
         "If you don't fail at least 90% of the time, you're not aiming high enough.",
-        "",
         "- Alan Kay",
     },
     {
@@ -24,18 +23,15 @@ local quotes = {
     },
     {
         "If you don't make mistakes, you're not working on hard enough problems.",
-        "",
         "- Frank Wilczek",
     },
     {
         "Crash early.",
-        "",
         "A dead program normally does a lot less damage than a crippled one.",
     },
     { "They did not know it was impossible, so they did it!", "", "- Mark Twain" },
     {
         "If debugging is the process of removing bugs, then programming must be the process of putting them in.",
-        "",
         "- Edsger W. Dijkstra",
     },
     {
@@ -45,32 +41,26 @@ local quotes = {
     },
     {
         "The best thing about a boolean is even if you are wrong, you are only off by a bit.",
-        "",
         "- Anonymous",
     },
     {
         "The best way to predict the future is to invent it.",
-        "",
         "- Alan Kay",
     },
     {
         "The computing scientist’s main challenge is not to get confused by the complexities of his own making.",
-        "",
         "- E. W. Dijkstra",
     },
     {
         "The goal of software engineering is to control complexity, not to create it.",
-        "",
         "- Dr. Pamela Zave",
     },
     {
         "The only way to learn a new programming language is by writing programs in it.",
-        "",
         "- Dennis Ritchie",
     },
     {
         "The trouble with programmers is that you can never tell what a programmer is doing until it’s too late.",
-        "",
         "- Seymour Cray",
     },
     {"long time_ago; // in a galaxy far away"},
@@ -113,17 +103,25 @@ local settings = {
         default_color = "",
         oldfiles_amount = 0,
     },
-    -- name which will be displayed and command
     body = {
-        type = "mapping",
+        type = "text",
         align = "center",
         fold_section = false,
-        title = "Basic Commands",
+        title = "Useful commands",
         margin = 5,
         content = {
-            { " Find File", "Telescope find_files", "<leader>ff" },
-            { " Find Word", "Telescope live_grep", "<leader>lg" },
-            { " Recent Files", "Telescope oldfiles", "<leader>of" },
+            "Fix code        \\f                     ",
+            "Toggle comment  \\c                     ",
+            "Toggle theme    \\t                     ",
+            ":split                                 ",
+            ":vsplit                                ",
+            "<Ctrl>+o        Jump back              ",
+            "F5              File browser           ",
+            "F6              Symbol browser         ",
+            "F11             Buffer browser         ",
+            "",
+            "<Ctrl>+n        Multicursor search next",
+            "<Ctrl>+Down     Multicursor down       ",
         },
         highlight = "String",
         default_color = "",
