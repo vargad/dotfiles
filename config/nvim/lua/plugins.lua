@@ -75,7 +75,7 @@ return require('packer').startup(function(use)
       "startup-nvim/startup.nvim",
       requires = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"},
       config = function()
-        require"startup".setup()
+        require("startup").setup(require("startup-theme"))
         vim.api.nvim_create_autocmd("FileType", {
             pattern={"startup"},
             callback=function()

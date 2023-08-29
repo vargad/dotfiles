@@ -54,6 +54,8 @@ Plug 'vim-scripts/Mark--Karkat' " multi color highlight words
 Plug 'scrooloose/nerdcommenter' " toggle comment
 Plug 'vim-scripts/Smart-Home-Key' " smart jump to home, toggle between start of line and first text in line
 
+" multicursor
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 " Plug 'CoderCookE/vim-chatgpt'
 
 if has('nvim')
@@ -218,6 +220,8 @@ let g:ale_virtualenv_dir_names = ["orchid_venv", "venv", "venv38"]
 let g:ale_completion_enabled = 1
 let g:syntastic_disabled_filetypes=['html']
 
+let g:VM_maps = {}
+let g:VM_maps["Switch Mode"] = '<C-Space>' " Copilot was also using tab
 
 " spelunker.vim will handle spell checking
 set nospell
