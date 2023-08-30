@@ -208,7 +208,8 @@ xnoremap <leader>c <Plug>NERDCommenterToggle
 let g:ycm_global_ycm_extra_conf = '~/.ycm_global_extra_conf.py'
 
 let g:ycm_always_populate_location_list=1
-let g:ycm_rust_toolchain_root = expand('~/dev/tools/rust-analyzer')
+let g:ycm_key_list_select_completion = ['<A-Down>']
+let g:ycm_key_list_previous_completion = ['<A-Up>']
 
 set completeopt-=preview " do not show complete preview window
 
