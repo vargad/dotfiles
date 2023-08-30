@@ -17,26 +17,7 @@ fi
 
 # Put your fun stuff here.
 
-function unique_add_to_path() {
-    [[ ":$PATH:" != *":$1:"* ]] && PATH="${PATH}:$1"
-}
-
-export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-unique_add_to_path "$GEM_HOME/bin"
-unique_add_to_path "$GEM_HOME/gems/ruby-lsp-0.8.1/exe"
-
-unique_add_to_path "$HOME/dev/install/bin"
-unique_add_to_path "$HOME/dev/tools/rust-analyzer/bin"
-unique_add_to_path "/usr/local/bin"
-unique_add_to_path "/sbin"
-unique_add_to_path "$HOME/.node_modules/bin"
-unique_add_to_path "$HOME/.local/bin"
-unique_add_to_path "$HOME/.cargo/bin"
-unique_add_to_path "$HOME/.gem/ruby/2.5.0/bin"
-unique_add_to_path "/var/lib/flatpak/exports/share"
-unique_add_to_path "$HOME/.local/share/flatpak/exports/share"
-unique_add_to_path "$HOME/dev/tools/flutter/bin"
-unique_add_to_path "$HOME/.pulumi/bin"
+source ~/.setpaths
 
 # source "$HOME/.bash_completion.d/python-argcomplete.sh"
 

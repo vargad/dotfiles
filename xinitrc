@@ -12,4 +12,6 @@ if [[ -f $HOME/.xinitrc_local ]] ; then
     source $HOME/.xinitrc_local
 fi
 
+source ~/.setpaths
+
 exec dbus-launch --exit-with-session --sh-syntax /usr/bin/awesome

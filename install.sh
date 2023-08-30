@@ -36,6 +36,7 @@ function setup_vim()
 
 update_link Xdefaults
 update_link bashrc
+update_link setpaths
 update_link config/qt5ct/colors/BreezeDark.conf
 update_link config/qt5ct/colors/OxygenDark.conf
 update_link gitconfig # TODO: should ask for name and e-mail
