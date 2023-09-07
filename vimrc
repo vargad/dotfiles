@@ -29,7 +29,8 @@ Plug 'leafgarland/typescript-vim'
 Plug 'rust-lang/rust.vim'
 
 " code completion/diagnostics
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --rust-completer --ts-completer', 'for': ['c', 'cpp', 'sql', 'rust', 'javascript', 'typescript', 'typescriptreact'] }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer --rust-completer --ts-completer', 'for': ['c', 'cpp', 'sql', 'rust', 'javascript', 'typescript', 'typescriptreact'] }
+
 Plug 'dense-analysis/ale'
 Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/syntastic' " better with some external tools: cppcheck
@@ -221,7 +222,7 @@ call ale#Set('python_ruff_options', '.')
 call ale#Set('python_mypy_options', '.')
 let g:ale_html_tidy_options = '-q -e -language en --custom-tags inline'
 let g:ale_virtualenv_dir_names = ["orchid_venv", "venv", "venv38"]
-let g:ale_completion_enabled = 1
+let g:ale_completion_enabled = 0
 let g:syntastic_disabled_filetypes=['html']
 
 let g:VM_maps = {}
