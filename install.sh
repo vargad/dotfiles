@@ -17,15 +17,20 @@ function update_link()
 
 function setup_vim()
 {
-    update_link vimrc
     plug_module=~/.vim/autoload/plug.vim
     if [[ ! -e "$plug_module" ]]; then
-        # TODO: move this to separate function
-        read -r -p "Are you sure you want to download https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim [y/N] " response
-        if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-            curl -fLo "$plug_module" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        fi
+        echo "Installing vim-plug"
+        curl -fLo "$plug_module" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     fi
+
+    if [[ ! -e ~/.vim/node ]]; then
+        echo "Installing node-16 for GitHub Copilot"
+        mkdir -p ~/.vim/node
+        curl -fLo /tmp/node.tar.xz https://nodejs.org/dist/v16.20.2/node-v16.20.2-linux-x64.tar.xz
+        tar xpvf /tmp/node.tar.xz -C ~/.vim/node --strip-components=1
+    fi
+
+    update_link vimrc
     update_link vim/smartmake.rb
     update_link vim/avr/compat.h
     update_link config/nvim/init.vim

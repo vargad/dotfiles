@@ -1,14 +1,6 @@
 set nocompatible
 
 
-" make sure vim-plug is installed
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible' " load some sensible vim setup
@@ -165,6 +157,7 @@ if exists("g:neovide")
 
 
     let g:copilot_filetypes = {'gitcommit': v:true, 'markdown': v:true}
+    let g:copilot_node_command = expand('~/.vim/node/bin/node')
 
     inoremap <C-s> <Cmd>call copilot#Suggest()<CR>
 else
