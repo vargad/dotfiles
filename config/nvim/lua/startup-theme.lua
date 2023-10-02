@@ -113,6 +113,7 @@ local settings = {
             "Fix code        \\f                     ",
             "Toggle comment  \\c                     ",
             "Toggle theme    \\t                     ",
+            "Fix spelling    Zl                     ",
             ":split                                 ",
             ":vsplit                                ",
             "<Ctrl>+o        Jump back              ",
