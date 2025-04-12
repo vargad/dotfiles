@@ -5,8 +5,10 @@
 
 [[ -f ~/.xinitrc_local ]] && source ~/.xinitrc_local
 
-export QT_QPA_PLATFORMTHEME="qt5ct"
+export XDG_MENU_PREFIX=kf5-
+export QT_QPA_PLATFORMTHEME="qt6ct"
 export CARGO_TARGET_DIR="/home/vargad/dev/cache/cargo"
+export LIBTORCH=/home/dev/tools/libtorch
 
 if [[ -f $HOME/.xinitrc_local ]] ; then
     source $HOME/.xinitrc_local

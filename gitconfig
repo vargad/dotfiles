@@ -1,7 +1,7 @@
 [include]
     path = .gitconfig_local ; include .gitconfig_local relative to the current file
 [core]
-    editor = neovide --nofork
+    editor = neovide --no-fork
     excludesfile = ~/.gitignore_global
 [push]
     default = simple

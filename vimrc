@@ -21,11 +21,12 @@ Plug 'leafgarland/typescript-vim'
 Plug 'rust-lang/rust.vim'
 
 " code completion/diagnostics
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer --rust-completer --ts-completer', 'for': ['c', 'cpp', 'sql', 'rust', 'javascript', 'typescript', 'typescriptreact'] }
-
 Plug 'dense-analysis/ale'
 Plug 'rust-lang/rust.vim'
-Plug 'scrooloose/syntastic' " better with some external tools: cppcheck
+"Plug 'scrooloose/syntastic' " better with some external tools: cppcheck
+Plug 'mfussenegger/nvim-lsp-compl', { 'for': ['ruby'] }
+
+Plug 'vim-test/vim-test'
 
 " git utils
 Plug 'tpope/vim-fugitive'
@@ -49,7 +50,14 @@ Plug 'vim-scripts/Smart-Home-Key' " smart jump to home, toggle between start of 
 
 " multicursor
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
+
+Plug 'madox2/vim-ai'
+
+" Plug 'Shougo/vimproc.vim'
+
 " Plug 'CoderCookE/vim-chatgpt'
+" Plug 'aduros/ai.vim'
 
 if has('nvim')
     Plug 'github/copilot.vim' , { 'for': [
@@ -66,12 +74,24 @@ if has('nvim')
         \ 'ruby',
         \ 'rust',
         \ 'sh',
+        \ 'solidity',
         \ 'sql',
         \ 'toml',
         \ 'typescript',
         \ 'typescriptreact',
-        \ 'vim'
+        \ 'vim',
+        \ 'yaml'
     \ ] }
+
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-cmdline'
+    Plug 'hrsh7th/nvim-cmp'
+else
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer --rust-completer --ts-completer', 'for': ['c', 'cpp', 'sql', 'rust', 'javascript', 'python', 'typescript', 'typescriptreact', 'solidity'] }
+    Plug 'ggml-org/llama.vim'
 endif
 
 " load additional locally used extra packages
@@ -124,6 +144,15 @@ set foldlevelstart=99
 
 syntax on
 
+" vim-test
+nmap <silent> <leader>tt :TestNearest<CR>
+nmap <silent> <leader>tT :TestFile<CR>
+nmap <silent> <leader>ta :TestSuite<CR>
+nmap <silent> <leader>tl :TestLast<CR>
+let test#strategy = "neovim_sticky"
+let g:test#neovim_sticky#kill_previous = 1
+let g:test#preserve_screen = 0
+let test#neovim_sticky#reopen_window = 1
 
 " theme
 if has('nvim')
@@ -147,6 +176,8 @@ if exists("g:neovide")
     let g:neovide_scale_factor=1.0
     let g:neovide_cursor_vfx_mode = "pixiedust"
     let g:neovide_cursor_vfx_particle_density = 8.0
+    let g:neovide_scroll_animation_length = 0
+    let g:neovide_remember_window_size = v:false
 
     function! ChangeScaleFactor(delta)
       let g:neovide_scale_factor = g:neovide_scale_factor * a:delta
@@ -157,9 +188,10 @@ if exists("g:neovide")
 
 
     let g:copilot_filetypes = {'gitcommit': v:true, 'markdown': v:true}
-    let g:copilot_node_command = expand('~/.vim/node/bin/node')
+    " let g:copilot_node_command = expand('~/.vim/node/bin/node')
 
     inoremap <C-s> <Cmd>call copilot#Suggest()<CR>
+    " inoremap <C-p> <Cmd>lua require'lsp_compl'.trigger_completion()<CR>
 else
     set guifont=Liberation\ Mono\ 11
 endif
@@ -194,32 +226,38 @@ map <F11> :ToggleBufExplorer<CR>
 " other mappings
 map <HOME> :SmartHomeKey<CR>
 
-nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
+"nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
 nnoremap <leader>gt :YcmCompleter GetType<CR>
-nnoremap <leader>f :YcmCompleter FixIt<CR>
+"nnoremap <leader>f :YcmCompleter FixIt<CR>
 xnoremap <leader>c <Plug>NERDCommenterToggle
 let g:ycm_global_ycm_extra_conf = '~/.ycm_global_extra_conf.py'
 
+let g:ycm_confirm_extra_conf = 0
 let g:ycm_always_populate_location_list=1
 let g:ycm_key_list_select_completion = ['<A-Down>']
 let g:ycm_key_list_previous_completion = ['<A-Up>']
 
 set completeopt-=preview " do not show complete preview window
 
-let g:syntastic_javascript_checkers = ['eslint']
 
 
+"let g:tsuquyomi_use_local_typescript = 0
+"let g:tsuquyomi_use_dev_node_module = 0
 
 call ale#Set('python_ruff_options', '.')
 call ale#Set('python_mypy_options', '.')
+"let g:ale_linters = { 'javascript': ['flow-language-server'] }
 let g:ale_html_tidy_options = '-q -e -language en --custom-tags inline'
 let g:ale_virtualenv_dir_names = ["orchid_venv", "venv", "venv38"]
 let g:ale_completion_enabled = 0
+
 let g:syntastic_disabled_filetypes=['html']
+let g:syntastic_javascript_checkers = ['eslint']
 
 let g:VM_maps = {}
 let g:VM_maps["Switch Mode"] = '<C-Space>' " Copilot was also using tab
+
 
 " spelunker.vim will handle spell checking
 set nospell
@@ -228,6 +266,17 @@ set nospell
 au! BufEnter *.cc let b:fswitchdst = 'h,hh'
 au! BufEnter *.h let b:fswitchdst = 'cc,c,cpp'
 
+command Msplit vsplit | copen
+
+
+" TODO: most of these should be set globally
+"au BufNewFile,BufRead *.py
+    "\ set tabstop=4
+    "\ set softtabstop=4
+    "\ set shiftwidth=4
+    "\ set expandtab
+    "\ set autoindent
+    "\ set fileformat=unix
 set makeprg=$HOME/.vim/smartmake.rb\ %
 autocmd BufRead,BufNewFile *.rs set makeprg=$HOME/.vim/smartmake.rb\ %
 

@@ -23,9 +23,6 @@ source ~/.setpaths
 
 export ANDROID_HOME=/home/dev/tools/android
 
-# add script directory to path
-base_dir=$(dirname $(readlink ~/.bashrc))
-unique_add_to_path $base_dir/scripts
 
 alias l="ls -l"
 alias mv="mv -n"
@@ -74,7 +71,7 @@ PROMPT_COMMAND='history -a'
 HISTCONTROL=ignoreboth
 
 # enter directories without cd command
-shopt -s autocd
+#shopt -s autocd
 
 if [[ -f $HOME/.bashrc_local ]] ; then
     source $HOME/.bashrc_local

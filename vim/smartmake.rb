@@ -24,9 +24,7 @@ IS_CPP =  CPP_EXT.include? File.extname(CURRENT_FILE)
 
 def find_project_root(dir)
     return nil if dir == '/'
-    if File.directory?(dir+"/.git")
-        return nil
-    end
+
     if File.file?(dir+"/CMakeLists.txt")
         return dir if File.read(dir+"/CMakeLists.txt") =~ /project([^)]+)/
     end
@@ -39,6 +37,10 @@ def find_project_root(dir)
     end
     if File.file?(dir+"/Cargo.toml") && IS_RUST
         return dir
+    end
+
+    if File.directory?(dir+"/.git")
+        return nil
     end
     parent = File.dirname(dir)
     root = find_project_root(parent)
@@ -55,7 +57,7 @@ if PROJECT_ROOT.nil?
         content = File.read(CURRENT_FILE)
         if content =~ /^int main\(/
             cxx = ENV["CXX"] || "g++"
-            spawn(cxx, "-Wall", "-Wextra", "-O2", CURRENT_FILE, "-o", File.basename(CURRENT_FILE, ".*"))
+            spawn(cxx, "-ggdb", "-Wall", "-Wextra", "-O2", CURRENT_FILE, "-o", File.basename(CURRENT_FILE, ".*"))
             return
         end
     end
