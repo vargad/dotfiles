@@ -62,6 +62,7 @@ Plug 'madox2/vim-ai'
 if has('nvim')
     Plug 'github/copilot.vim' , { 'for': [
         \ 'c',
+        \ 'cmake',
         \ 'conf',
         \ 'cpp',
         \ 'gitcommit',
@@ -69,6 +70,7 @@ if has('nvim')
         \ 'javascript',
         \ 'json',
         \ 'lua',
+        \ 'make',
         \ 'markdown',
         \ 'python',
         \ 'ruby',
